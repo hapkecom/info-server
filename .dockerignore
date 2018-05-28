@@ -1,0 +1,5 @@
+*~
+docker-build.sh
+docker-releaseAndPush2Repo.sh
+kubernetes-configurations
+

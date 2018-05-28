@@ -12,7 +12,7 @@ echo "--- Message (content of MESSAGE file):"
 cat MESSAGE
 
 echo ""
-echo "--- Response date/time:"
+echo "--- Last/Previous Response date/time:"
 date
 
 echo ""
@@ -46,5 +46,7 @@ if [[ -n "${SHOW_ENVIRONMENT_VARIABLES}" ]]; then
 else
     echo "--- Environment Variables: (disabled to show by configuration)"
 fi
+
+echo ""
 
 

@@ -1,5 +1,6 @@
-info-server - A trivial HTTP server for testing Docker and Kubernetes Environments
-==================================================================================
+info-server -
+A simple HTTP server for testing Docker and Kubernetes Environments
+===================================================================
 
 Introduction
 ------------
@@ -20,7 +21,7 @@ The response of the server shows:
   We can create different Docker images and deploy them differently.
   With different messages we can distinct them to verify that the deployment and HTTP access IP/port are working as expected.
 
-* The date/time of the response, just to see whether we get a fresh result.
+* A timestamp, just to see whether we get a fresh result. This is actually the time stamp of the previous request (because of the simple implementation).
 
 * The content of the VERSION file, which contains the Docker image version.
   Set the wanted Docker tag here before deploying the info-server to a Docker repo/registry.
@@ -52,23 +53,30 @@ If you want to build an own image (e.g. with own MESSAGE and/or own VERSION, or 
 TO BE WRITTEN
 
 
+Build it locally:
+  sudo ./docker-build.sh
+
+Run it locally:
+  sudo docker run -d -p 8080:8080 info-server
+
+
 
 Deploying
 ---------
 
 To run it directly on Docker (Docker must be installed):
 
-  sudo docker run -p 8080:8080 XXX/info-server
-
-or as daemon:
-  sudo docker run -d -p 8080:8080 XXX/info-server
+  sudo docker run -d -p 8080:8080 hapkecom/info-server
 
 To run the info-server in Kubernetes (Kubernetes and kubectl must be configured properly):
+
+TO BE WRITTEN
 
 
 
 To run the and a mongo DB server in Kubernetes:
 
+TO BE WRITTEN
 
 
 

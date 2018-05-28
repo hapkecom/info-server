@@ -9,4 +9,5 @@ echo "Started info-server on port ${SERVER_PORT} ..."
 # OpenBSD netcat works different:
 #   while true; do echo -e "HTTP/1.1 200 OK\n\n $(date)" | nc -l localhost ${SERVER_PORT}; done
 
-while true; do ./info-print.sh | nc -l localhost ${SERVER_PORT}; done
+while true; do date; echo "Waiting for new connection"; (./info-print.sh | nc -N -l ${SERVER_PORT}); done
+
