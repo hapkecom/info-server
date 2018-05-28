@@ -26,12 +26,13 @@ The response of the server shows:
 
 * The content of the `VERSION` file, which contains the Docker image version.
   Set the wanted Docker tag here before deploying the info-server to a Docker repo/registry.
+  The shown VERSION can be differ from the Docker image version - it depends on the Docker build process.
 
   Ideas on how to do a better versioning: see [How to Version your Docker Images](https://medium.com/travis-on-docker/how-to-version-your-docker-images-1d5c577ebf54)
 
 * Hostname and Kubernetes namespace of the running Docker container/Kubernetes pod, to verify the correct deployment.
 
-* Optional check for a successful access to a Monge DB (by default with host:port = mongo:27017)
+* Optional check for a successful access to a monge DB (by default with host:port = mongo:27017)
 
   What is this good for?
   If you deploy the info-server and a mongo DB service into the same Kubernetes namespace than this check should be successful.
@@ -131,7 +132,6 @@ Copyright
 Copyright (c) 2018 by hapke.com
 
 License: GPL version 3 - see file LICENSE for details.
-
 
 
 

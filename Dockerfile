@@ -10,6 +10,6 @@ COPY MESSAGE VERSION README.md /
 COPY info-server.sh info-config.sh info-print.sh /
 
 EXPOSE  8080
-#CMD ["/bin/sh", "/app/info-server.sh"]
+#CMD ["/bin/sh", "/info-server.sh"]
 CMD cd / ; /info-server.sh
 
