@@ -43,16 +43,16 @@ The response of the server shows:
 
 Configuration
 -------------
-* ./MESSAGE : you can place you custom ASCII message here
-* ./VERSION : you put your custom Docker repo/registry version label here
-* ./info-config.sh : few configuration settings
-* ./kubernetes-configurations/* : example file for Kubernetes deployments
+* `./MESSAGE` : you can place you custom ASCII message here
+* `./VERSION` : you put your custom Docker repo/registry version label here
+* `./info-config.sh` : few configuration settings
+* `./kubernetes-configurations/*` : example file for Kubernetes deployments
 
 
 
 Build as Docker Image
 ---------------------
-You can use a pre-built docker image [hapkecom/info-server](https://hub.docker.com/r/hapkecom/info-server/) ... or you can build an own image from your onw code (e.g. with own MESSAGE and/or own VERSION, or to test a private Docker repo).
+You can use a pre-built docker image [hapkecom/info-server](https://hub.docker.com/r/hapkecom/info-server/) ... or you can build an own image from your onw code (e.g. with own `MESSAGE` and/or own `VERSION`, or to test a private Docker repo).
 
 Build it locally:
 
@@ -111,7 +111,7 @@ To run the info-server in Kubernetes ([Kubernetes](https://kubernetes.io/) and [
     #kubectl delete namespace $NAMESPACE
     ```
   
-This deployments use the pre-built Docker image. If you want to use your own build then you need to use your own Docker repo (URL/name) in file kubernetes-configurations/info-server-kubernetes.yaml in section Deployment.spec.template.spec.containers.image .
+This deployments use the pre-built Docker image. If you want to use your own build then you need to use your own Docker repo (URL/name) in file `kubernetes-configurations/info-server-kubernetes.yaml` in section Deployment.spec.template.spec.containers.image .
 
 
 
