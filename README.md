@@ -15,7 +15,7 @@ returns some information of the Docker container or the Kubernetes pod.
 Features
 --------
 The response of the server shows:
-* The content of the MESSAGE file, which can be modified before building the Docker image.
+* The content of the `MESSAGE` file, which can be modified before building the Docker image.
   It can also be modified if you have (shell) access to the Docker container/Kubernetes pod under /MESSAGE.
 
   How can we use it?
@@ -24,14 +24,14 @@ The response of the server shows:
 
 * A timestamp, just to see whether we get a fresh result. This is actually the time stamp of the previous request (because of the simple implementation).
 
-* The content of the VERSION file, which contains the Docker image version.
+* The content of the `VERSION` file, which contains the Docker image version.
   Set the wanted Docker tag here before deploying the info-server to a Docker repo/registry.
 
   Ideas on how to do a better versioning: see [How to Version your Docker Images](https://medium.com/travis-on-docker/how-to-version-your-docker-images-1d5c577ebf54)
 
-* Hostname/Domainname of the running Docker container/Kubernetes pod, to verify the correct deployment.
+* Hostname and Kubernetes namespace of the running Docker container/Kubernetes pod, to verify the correct deployment.
 
-* Optional check for a successful access to a Monge DB (by default with host:port = mongo:27017) with 2 secs timeout.
+* Optional check for a successful access to a Monge DB (by default with host:port = mongo:27017)
 
   What is this good for?
   If you deploy the info-server and a mongo DB service into the same Kubernetes namespace than this check should be successful.
@@ -50,22 +50,27 @@ Configuration
 
 
 
-Build as Docker Image
----------------------
+Build Docker Image
+------------------
 You can use a pre-built docker image [hapkecom/info-server](https://hub.docker.com/r/hapkecom/info-server/) ... or you can build an own image from your onw code (e.g. with own `MESSAGE` and/or own `VERSION`, or to test a private Docker repo).
 
-Build it locally:
+Build the Docker image locally:
 
     sudo ./docker-build.sh
 
-Run it locally:
+Run the locally build image in Docker:
 
     sudo docker run -d -p 8080:8080 info-server
 
 
+Build and push the Docker image to a remote repository
 
+    # change variable DOCKERREPO in file docker-releaseAndPush2Repo.sh,
+    # make sure your local docker has access right to the remote repo,
+    # build and push:
+    ./docker-releaseAndPush2Repo.sh
 
-To build it automatically when hosted on github.com and to push it to [Docker Hub](https://hub.docker.com/) read: [Configure automated builds from GitHub on Docker Hub](https://docs.docker.com/docker-hub/github/#creating-an-automated-build). I still use the deprecated "Integrations&services" integration with Docker at GitHub.
+To build the Docker image automatically when hosted on github.com and to push it to [Docker Hub](https://hub.docker.com/) read: [Configure automated builds from GitHub on Docker Hub](https://docs.docker.com/docker-hub/github/#creating-an-automated-build). I still use the deprecated "Integrations&services" integration with Docker at GitHub.
 
 
 
@@ -83,7 +88,6 @@ Deploying in Kubernetes
 -----------------------
 To run the info-server in Kubernetes ([Kubernetes](https://kubernetes.io/) and [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) must be configured properly):
 
-    ```
     # create a separate Kubernetes namespace (only if wanted)
     export NAMESPACE=my-namespace
     kubectl create namespace $NAMESPACE
@@ -109,7 +113,6 @@ To run the info-server in Kubernetes ([Kubernetes](https://kubernetes.io/) and [
 
     # cleanup and delete the namespace at the end
     #kubectl delete namespace $NAMESPACE
-    ```
   
 This deployments use the pre-built Docker image. If you want to use your own build then you need to use your own Docker repo (URL/name) in file `kubernetes-configurations/info-server-kubernetes.yaml` in section Deployment.spec.template.spec.containers.image .
 

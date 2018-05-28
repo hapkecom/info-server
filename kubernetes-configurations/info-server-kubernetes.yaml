@@ -32,6 +32,7 @@ spec:
       containers:
       - name: info-server-container
         image: hapkecom/info-server
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         env:
