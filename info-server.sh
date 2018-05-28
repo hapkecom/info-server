@@ -1,4 +1,5 @@
 #!/bin/sh
+# Copyright (c) 2018 by hapke.com
 
 SERVER_PORT=8080
 echo "Started info-server on port ${SERVER_PORT} ..."

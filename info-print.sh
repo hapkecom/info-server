@@ -24,8 +24,15 @@ echo "--- Hostname:"
 hostname
 
 echo ""
-echo "--- Domain Name (contains Kubernetes namespace if it exists):"
-hostname -d
+echo "--- Kubernetes namespace"
+echo "If configured as environment variable via Kubernetes Downward API:"
+echo    "    # env | grep NAMESPACE | sort :"
+echo -n "    " && env | grep NAMESPACE | sort
+
+echo ""
+echo "DNS search domain:"
+echo    "    # grep search /etc/resolv.conf :"
+echo -n "    " && grep search /etc/resolv.conf
 
 echo ""
 if [[ -n "${SHOW_MONGO_CHECK}" ]]; then
@@ -33,7 +40,7 @@ if [[ -n "${SHOW_MONGO_CHECK}" ]]; then
     # do a very simple test: check that a TCP connection can be opened
     netcat_result=`nc -zvv -w${MONGO_CHECK_TIMEOUT_SECS} ${MONGO_HOST} ${MONGO_PORT} 2>&1`
     echo "Connect test to ${MONGO_HOST}:${MONGO_PORT} had the following result:"
-    echo "${netcat_result}"
+    echo "    ${netcat_result}"
 else
     echo "--- Check for service dependency (mongo:27017): (disabled to show by configuration)"
 fi

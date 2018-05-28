@@ -1,0 +1,42 @@
+#
+# deployment of a standard mongo DB in Kubernetes as service
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  labels:
+    app: mongo
+    tier: backend
+spec:
+  ports:
+  - port: 27017
+    targetPort: 27017
+  type: NodePort
+  selector:
+    app: mongo
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - name: mongo-container
+        image: mongo:3.6.1-jessie
+        ports:
+        - containerPort: 27017
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+
