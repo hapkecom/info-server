@@ -138,7 +138,7 @@ Copyright
 ---------
 Copyright (c) 2018 by hapke.com
 
-* Original source code: [https://github.com/hapkecom/info-server]
+* Original source code: https://github.com/hapkecom/info-server
 * Original Docker image: [hapkecom/info-server](https://hub.docker.com/r/hapkecom/info-server/) 
 * License: GPL version 3 - see file LICENSE for details.
 
