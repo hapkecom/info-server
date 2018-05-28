@@ -127,6 +127,13 @@ Other Useful Docker Images for Testing
 
 
 
+Future Work
+-----------
+Ideas:
+* extend the info-server to be also an echo-server
+  * read about bidirectional use of netcat: https://www.hackingtutorials.org/networking/hacking-netcat-part-2-bind-reverse-shells/
+
+
 Copyright
 ---------
 Copyright (c) 2018 by hapke.com
