@@ -57,4 +57,8 @@ fi
 
 echo ""
 
+echo ""
+echo "--- The info-server source:"
+echo "Original source code: https://github.com/hapkecom/info-server"
+echo "Original docker image: hapkecom/info-server (https://hub.docker.com/r/hapkecom/info-server/)"
 
