@@ -56,15 +56,11 @@ You can use a pre-built docker image [hapkecom/info-server](https://hub.docker.c
 
 Build it locally:
 
-    ```
     sudo ./docker-build.sh
-    ```
 
 Run it locally:
 
-    ```
     sudo docker run -d -p 8080:8080 info-server
-    ```
 
 
 
@@ -77,7 +73,7 @@ Deploying directly on Docker
 ----------------------------
 To run it directly on Docker ([Docker](https://docs.docker.com/install/) must be installed):
 
-  sudo docker run -d -p 8080:8080 hapkecom/info-server
+    sudo docker run -d -p 8080:8080 hapkecom/info-server
 
 This deployments use the pre-built Docker image. If you want to use your own build then you need to use your own Docker repo (URL/name) of course.
 
