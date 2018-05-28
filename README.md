@@ -55,10 +55,16 @@ Build as Docker Image
 You can use a pre-built docker image [hapkecom/info-server](https://hub.docker.com/r/hapkecom/info-server/) ... or you can build an own image from your onw code (e.g. with own MESSAGE and/or own VERSION, or to test a private Docker repo).
 
 Build it locally:
+
+    ```
     sudo ./docker-build.sh
+    ```
 
 Run it locally:
+
+    ```
     sudo docker run -d -p 8080:8080 info-server
+    ```
 
 
 
@@ -81,31 +87,33 @@ Deploying in Kubernetes
 -----------------------
 To run the info-server in Kubernetes ([Kubernetes](https://kubernetes.io/) and [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) must be configured properly):
 
-  # create a separate Kubernetes namespace (only if wanted)
-  export NAMESPACE=my-namespace
-  kubectl create namespace $NAMESPACE
+    ```
+    # create a separate Kubernetes namespace (only if wanted)
+    export NAMESPACE=my-namespace
+    kubectl create namespace $NAMESPACE
 
-  # start the info-server
-  kubectl --namespace $NAMESPACE apply -f kubernetes-configurations/info-server-kubernetes.yaml 
+    # start the info-server
+    kubectl --namespace $NAMESPACE apply -f kubernetes-configurations/info-server-kubernetes.yaml 
 
-  # (optional) start the mongo DB service 
-  # - only needed when you want to check service access inside Kubernetes namespace
-  kubectl --namespace $NAMESPACE apply -f kubernetes-configurations/mongo-kubernetes.yaml
+    # (optional) start the mongo DB service 
+    # - only needed when you want to check service access inside Kubernetes namespace
+    kubectl --namespace $NAMESPACE apply -f kubernetes-configurations/mongo-kubernetes.yaml
 
-  # (optional) show running services
-  kubectl get services --namespace $NAMESPACE
+    # (optional) show running services
+    kubectl get services --namespace $NAMESPACE
 
-  # access the info-server service (when running normal/remote Kubernetes)
-  # get EXTERNAL-IP and PORT (e.g. 32751 of "8080:32751/TCP")
-  kubectl get services --namespace $NAMESPACE | egrep -e "(info-server|EXTERNAL-IP|PORT)"
-  # now access EXTERNAL-IP:PORT in any web browser, or on command line:
-  curl http://192.168.99.100:32751/
+    # access the info-server service (when running normal/remote Kubernetes)
+    # get EXTERNAL-IP and PORT (e.g. 32751 of "8080:32751/TCP")
+    kubectl get services --namespace $NAMESPACE | egrep -e "(info-server|EXTERNAL-IP|PORT)"
+    # now access EXTERNAL-IP:PORT in any web browser, or on command line:
+    curl http://192.168.99.100:32751/
 
-  # access the info-server service (when running Kubernetes locally in [Minikube](https://kubernetes.io/docs/getting-started-guides/minikube/)):
-  minikube service --namespace $NAMESPACE info-server
+    # access the info-server service (when running Kubernetes locally in [Minikube](https://kubernetes.io/docs/getting-started-guides/minikube/)):
+    minikube service --namespace $NAMESPACE info-server
 
-  # cleanup and delete the namespace at the end
-  #kubectl delete namespace $NAMESPACE
+    # cleanup and delete the namespace at the end
+    #kubectl delete namespace $NAMESPACE
+    ```
   
 This deployments use the pre-built Docker image. If you want to use your own build then you need to use your own Docker repo (URL/name) in file kubernetes-configurations/info-server-kubernetes.yaml in section Deployment.spec.template.spec.containers.image .
 
