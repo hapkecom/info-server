@@ -36,7 +36,8 @@ echo -n "    " && grep search /etc/resolv.conf
 
 echo ""
 if [[ -n "${SHOW_MONGO_CHECK}" ]]; then
-    echo "--- Check for Service Dependency (mongo:27017) with ${MONGO_CHECK_TIMEOUT_SECS} secs timeout:"
+    echo "--- Check Connection of Service Dependency (mongo:27017):"
+    #echo "--- Check for Service Dependency (mongo:27017) with ${MONGO_CHECK_TIMEOUT_SECS} secs timeout:"
     # do a very simple test: check that a TCP connection can be opened
     netcat_result=`nc -zvv -w${MONGO_CHECK_TIMEOUT_SECS} ${MONGO_HOST} ${MONGO_PORT} 2>&1`
     echo "Connect test to ${MONGO_HOST}:${MONGO_PORT} had the following result:"
